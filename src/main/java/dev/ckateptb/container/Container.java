@@ -33,9 +33,9 @@ public class Container<O> {
     private final Map<Key, O> owners = new HashMap<>();
     private final Map<Key, BeanParent> parents = new HashMap<>();
     private final Map<Key, Object> beans = new ConcurrentHashMap<>();
-    private BiConsumer<O, Runnable> componentRegisterHandlerExecutor = (o, runnable) -> runnable.run();
     private final ConcurrentLinkedQueue<ComponentRegisterHandler<O>> componentRegisterHandlers = new ConcurrentLinkedQueue<>();
     private final ConcurrentLinkedQueue<ContainerInitializeHandler<O>> containerInitializedHandlers = new ConcurrentLinkedQueue<>();
+    private BiConsumer<O, Runnable> componentRegisterHandlerExecutor = (o, runnable) -> runnable.run();
     private Consumer<String> warnLogger = System.out::println;
     private BiConsumer<String, Throwable> errorLogger = (message, throwable) -> {
         System.err.println(message);
